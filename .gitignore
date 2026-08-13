@@ -1,0 +1,28 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.htpasswd
+
+# Dependencies and generated output
+node_modules/
+dist/
+.vuepress/.cache/
+.vuepress/.temp/
+.vuepress/dist/
+coverage/
+
+# Local tooling and design sessions
+.superpowers/
+.codex/
+.agents/
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
