@@ -18,6 +18,7 @@ coverage/
 
 # Local tooling and design sessions
 .superpowers/
+.worktrees/
 .codex/
 .agents/
 
