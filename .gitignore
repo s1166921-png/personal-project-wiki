@@ -21,6 +21,13 @@ coverage/
 .worktrees/
 .codex/
 .agents/
+.serena/
+.workbuddy/
+.pnpm-store/
+
+# VitePress generated output (built in CI)
+site/docs/.vitepress/dist/
+site/docs/.vitepress/cache/
 
 # Logs and OS files
 *.log

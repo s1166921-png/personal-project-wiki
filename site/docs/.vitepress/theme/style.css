@@ -1,0 +1,171 @@
+/* Monad design tokens — applied on top of the VitePress default theme */
+
+:root {
+  --monad-parchment: #f6f3f1;
+  --monad-off-black: #242424;
+  --monad-graphite: #4e4d4d;
+  --monad-smoke: #797776;
+  --monad-ash: #cecac8;
+  --monad-lake-blue: #2b59d1;
+  --monad-periwinkle: #cfdaf5;
+
+  --vp-font-family-base: 'Inter var experimental', 'Inter', -apple-system,
+    'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+  --vp-font-family-mono: ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas',
+    'PingFang SC', 'Microsoft YaHei', monospace;
+}
+
+/* ---------- Light theme ---------- */
+:root {
+  --vp-c-bg: var(--monad-parchment);
+  --vp-c-bg-alt: #fbf9f8;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #efebe8;
+
+  --vp-c-text-1: var(--monad-off-black);
+  --vp-c-text-2: var(--monad-graphite);
+  --vp-c-text-3: var(--monad-smoke);
+
+  --vp-c-border: var(--monad-ash);
+  --vp-c-divider: #e3dfdc;
+  --vp-c-gutter: #e3dfdc;
+
+  --vp-c-brand-1: var(--monad-lake-blue);
+  --vp-c-brand-2: #2450bd;
+  --vp-c-brand-3: #1f47a8;
+  --vp-c-brand-soft: rgba(43, 89, 209, 0.12);
+
+  --vp-c-tip-1: var(--monad-lake-blue);
+  --vp-c-tip-2: #2450bd;
+  --vp-c-tip-3: #1f47a8;
+  --vp-c-tip-soft: rgba(43, 89, 209, 0.1);
+
+  --vp-c-important-1: #6b46c1;
+  --vp-c-important-soft: rgba(107, 70, 193, 0.1);
+
+  --vp-c-warning-1: #a8600a;
+  --vp-c-warning-soft: rgba(168, 96, 10, 0.1);
+
+  --vp-c-danger-1: #b3261e;
+  --vp-c-danger-soft: rgba(179, 38, 30, 0.1);
+
+  --vp-c-caution-1: #a8600a;
+  --vp-c-caution-soft: rgba(168, 96, 10, 0.1);
+
+  --vp-c-note-1: var(--monad-lake-blue);
+  --vp-c-note-soft: rgba(43, 89, 209, 0.1);
+
+  --vp-nav-bg-color: var(--monad-parchment);
+  --vp-sidebar-bg-color: var(--monad-parchment);
+}
+
+/* ---------- Dark theme ---------- */
+.dark {
+  --vp-c-bg: #1a1a19;
+  --vp-c-bg-alt: #212120;
+  --vp-c-bg-elv: #262625;
+  --vp-c-bg-soft: #2b2b29;
+
+  --vp-c-text-1: rgba(246, 243, 241, 0.92);
+  --vp-c-text-2: rgba(246, 243, 241, 0.7);
+  --vp-c-text-3: rgba(246, 243, 241, 0.5);
+
+  --vp-c-border: #3a3a37;
+  --vp-c-divider: #323230;
+  --vp-c-gutter: #323230;
+
+  --vp-c-brand-1: #8fa9f0;
+  --vp-c-brand-2: #a8bdf5;
+  --vp-c-brand-3: #c2d1f8;
+  --vp-c-brand-soft: rgba(143, 169, 240, 0.16);
+}
+
+/* ---------- Typography ---------- */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4 {
+  font-family: Georgia, 'Songti SC', 'Source Han Serif SC', 'Noto Serif SC',
+    'SimSun', serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.vp-doc h1 {
+  font-size: 30px;
+  line-height: 1.35;
+}
+
+.vp-doc h2 {
+  font-size: 24px;
+  margin-top: 40px;
+  padding-top: 22px;
+}
+
+.vp-doc h3 {
+  font-size: 19px;
+  margin-top: 30px;
+}
+
+/* Hero title also serif */
+.VPHero .name,
+.VPHero .text {
+  font-family: Georgia, 'Songti SC', 'Source Han Serif SC', 'Noto Serif SC',
+    'SimSun', serif;
+  font-weight: 400;
+}
+
+/* ---------- Layout polish ---------- */
+.vp-doc table {
+  font-size: 14px;
+}
+
+.vp-doc blockquote {
+  border-left: 2px solid var(--vp-c-border);
+  color: var(--vp-c-text-2);
+}
+
+.custom-block {
+  border-radius: 8px;
+}
+
+.vp-doc a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43, 89, 209, 0.3);
+}
+
+.vp-doc a:hover {
+  border-bottom-color: var(--vp-c-brand-1);
+}
+
+.dark .vp-doc a {
+  border-bottom-color: rgba(143, 169, 240, 0.35);
+}
+
+/* Feature cards: softer, no shadow, per Monad spec */
+.VPFeature {
+  border-radius: 16px;
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+}
+
+.VPFeature:hover {
+  border-color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-bg-elv);
+}
+
+/* Sidebar active link */
+.vp-sidebar-link-item.active,
+.vp-sidebar-link.active {
+  color: var(--vp-c-brand-1);
+}
+
+/* Code blocks */
+.vp-doc div[class*='language-'] code {
+  font-size: 13px;
+}
+
+/* Outline (right TOC) */
+.VPDocAsideOutline .outline-link.active {
+  color: var(--vp-c-brand-1);
+}

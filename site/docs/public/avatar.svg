@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="小杨">
+  <circle cx="100" cy="100" r="100" fill="#cfdaf5"/>
+  <circle cx="100" cy="100" r="86" fill="none" stroke="#2b59d1" stroke-width="2" opacity="0.35"/>
+  <text x="100" y="100" font-family="Georgia, 'Songti SC', 'SimSun', serif" font-size="82" font-weight="400" fill="#2b59d1" text-anchor="middle" dominant-baseline="central">杨</text>
+</svg>

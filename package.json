@@ -1,0 +1,15 @@
+{
+  "name": "meiou-project-wiki",
+  "version": "1.0.0",
+  "private": true,
+  "description": "小杨的跨境电商技术交付作品集，JavaGuide 风格文档站",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev site/docs",
+    "docs:build": "vitepress build site/docs",
+    "docs:preview": "vitepress preview site/docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
