@@ -155,6 +155,23 @@ JWT（python-jose，HS256）+ bcrypt。
 
 覆盖的都是**安全与商务正确性**，不是 CRUD。这个选择是对的——这个系统的风险集中在"谁能看到什么"，不在"能不能增删改查"。
 
+## 九、成果数据
+
+| 指标 | 数值 | 来源 |
+| --- | --- | --- |
+| 角色模型 | **3 角色**（admin / approver / customer） | `models.py` |
+| 商务状态机 | **5 状态**（pending → pending_confirmation → approved / rejected） | 定价工作流 |
+| 上传通道 | **3 条**（multipart / 流式直写 / 分块上传） | 上传服务 |
+| 分块大小 | 8MB（multipart） | `file_service.py` |
+| 转码 | HEVC(H.265) → H.264，ffmpeg `crf 23 +faststart`，超时 300s | 转码服务 |
+| 安全隔离 | 越权返回 **404 而非 403**；工人端模型不含 price 字段 | `_check_customer_owner` |
+| 端到端测试 | **7 项**（鉴权/上传/定价/确认/报价不泄露/客户隔离/重复审批） | `e2e_test.py` |
+| 部署 | Docker Compose（app + nginx），非 root 运行，`proxy_buffering off` | Dockerfile / nginx |
+
+::: tip 这个项目的"数据"主要是工程正确性，而不是流量数字
+SOP 视频平台不像 GEO 系统那样有可量化的内容产出和发布成功率，它的成果体现在**安全与商务流程的正确性**上——7 项端到端测试全部围绕"谁能看到什么"和"报价怎么确认"，而非 CRUD。面试时讲清楚这一点，比硬凑一个访问量更有说服力。
+:::
+
 ## 九、已知边界
 
 | 边界 | 说明 |

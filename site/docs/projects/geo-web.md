@@ -129,6 +129,22 @@ AI 搜索在生成答案时，特别倾向于抓取结构化的问答对。**把
 
 本站（这个作品集站）也沿用了同一套令牌。
 
+## 六、成果数据
+
+| 指标 | 数值 | 来源 |
+| --- | --- | --- |
+| 矩阵站点 | **4 类**（News 站 / 品牌官网 / 文章模板 / 落地页模板） | 矩阵结构 |
+| News 站路由 | **8 个**（首页/专题/文章/sitemap/RSS/robots/llms.txt 等） | `geo-hub/app.py` |
+| 文章页 JSON-LD | **3 块**（NewsArticle / BreadcrumbList / FAQPage + speakable） | `templates/article.html` |
+| 文章模板 | 4 类 JSON-LD + llms.txt + robots + sitemap + BingSiteAuth | `meiou-news-article-template/` |
+| 官网技术栈 | Next.js 16.2 + React 19.2 + Drizzle 0.45 | `meiou-main-site/package.json` |
+| 设计令牌 | **7 色** Monad 体系，单功能强调色 Lake Blue | 视觉规范 |
+| 冒烟测试 | `portal-smoke.test.js` | `crossborder-portal-showcase/` |
+
+::: tip 这个项目的成果是"可复制的资产"，不是"流量"
+GEO 网页矩阵最值钱的是把 GEO 最佳实践（robots 放行、llms.txt、FAQ+speakable、canonical）**固化成了可照抄的模板**。AI 爬虫目前还没命中正文是真实现状，但结构化标记、权威源策略这些都是长期资产，做好了等爬虫来。能测到"没抓到"，本身也是能力证明。
+:::
+
 ## 六、已知边界
 
 | 边界 | 说明 |

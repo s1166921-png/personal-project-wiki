@@ -38,9 +38,9 @@ features:
     details: 国内上传、海外检索的 SOP 视频平台，含定价工作流、分块上传、HEVC 后台转码与客户隔离。
     link: /projects/sop-video
   - icon: 🧭
-    title: 诚实边界
-    details: 每个项目都标注了真实完成度。没上线的、没做完的、只是原型的，全部写清楚。
-    link: /interview/boundaries
+    title: 交付计划书
+    details: 每个项目都有一条分阶段的演进路线，把「已知边界」翻译成下一步动作，近期/中期/远期一目了然。
+    link: /guide/roadmap
 ---
 
 ## 这个站是什么

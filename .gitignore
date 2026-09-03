@@ -34,3 +34,6 @@ site/docs/.vitepress/cache/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# VitePress 临时编译文件
+*.timestamp-*.mjs

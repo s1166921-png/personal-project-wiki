@@ -64,6 +64,20 @@ AI 客服页里提到的业务路由（`router.js` + `classifier.js`），在这
 
 部署配置存在（`.openai/hosting.json`、`.wrangler/`），提交历史真实且有多次迭代。
 
+## 五、成果数据
+
+| 指标 | 数值 | 来源 |
+| --- | --- | --- |
+| 视觉风格 | **3 套**（consulting 顾问型 / digital 科技型 / heritage 东方型） | `components/` |
+| 核心组件 | 3 套首页 + consultation-panel + template-switcher | 组件层 |
+| 技术栈 | Next.js 16 + React 19 + Tailwind + Drizzle + Cloudflare | `package.json` |
+| 客服联动 | 内嵌挂件，`businessHint="meiouyuan"` 打通知识作用域 | `group-ai-widget.tsx` |
+| 部署配置 | `.openai/hosting.json`、`.wrangler/` 存在，多次迭代 | 仓库 |
+
+::: tip 这个项目的成果是"一体化交付"，不是"独立上线"
+合规官网最有价值的不是三套风格，而是**内嵌 AI 客服时带上了 `businessHint`**——客服一进页面就知道用户在看财税合规业务，不用先问"您咨询哪方面"。这跟客服系统里的业务路由是配套的，两个项目是一条链路上的两环，不是各做各的。
+:::
+
 ## 五、已知边界
 
 | 边界 | 说明 |
