@@ -1,17 +1,18 @@
 # 项目全景
 
-我交付的系统集中在跨境电商的几个高人工环节。按业务主线分，是四条；按技术主题分，是六块。
+我交付的系统集中在跨境电商的几个高人工环节，外加一套量化投资研究。按业务主线分，是五条；按技术主题分，是六块。
 
-## 一、四条业务主线
+## 一、五条业务主线
 
 | 主线 | 项目 | 解决的人工环节 |
 | --- | --- | --- |
 | **财税自动化** | [美鸥做账工具](/projects/pdf-to-excel) | 财务手工录入亚马逊财报 PDF |
 | **通关数据** | [美鸥天眼 · 关税查询](/projects/hscode) | 报关员跨五国官网查税率 |
 | **内容获客** | [GEO 内容生产系统](/projects/geo-article)、[GEO 网页矩阵](/projects/geo-web)、[财税合规官网](/projects/compliance-site) | 运营手写文章、手动分发 |
-| **作业与服务** | [跨境 SOP 视频平台](/projects/sop-video)、[RPA 工具链](/projects/rpa)、[AI 智能客服](/projects/ai-cs) | 海外工人培训、运单标识、对账、重复答疑 |
+| **作业与服务** | [跨境 SOP 视频平台](/projects/sop-video)、[RPA 工具链](/projects/rpa)、[AI 智能客服](/projects/ai-cs)、[物流审计系统](/projects/logistics-audit) | 海外工人培训、运单标识、对账、重复答疑、海外仓作业审计 |
+| **量化投资** | [波段执行器](/projects/swing-executor)、[核心-卫星量化框架](/projects/aquant) | 人工盯盘、手动下单、回测靠拍脑袋 |
 
-## 二、九个交付物一览
+## 二、十三个交付物一览
 
 | 项目 | 定位 | 技术栈 | 真实状态 |
 | --- | --- | --- | --- |
@@ -23,6 +24,10 @@
 | [RPA 工具链](/projects/rpa) | 运单标识 + 物流对账 | Playwright / AHK / FastAPI | **已交付**，但非"平台" |
 | [AI 智能客服](/projects/ai-cs) | 网页挂件 + WhatsApp 双渠道客服 | Node / SSE / Meta Webhook | **原型完成**，集团版开发中 |
 | [财税合规官网](/projects/compliance-site) | 合规模板站，内嵌 AI 客服 | Next.js / Tailwind / Cloudflare | **模板站形态** |
+| [物流审计系统](/projects/logistics-audit) | 海外仓作业审计 + 费用对账 | FastAPI / SQLAlchemy / 小程序 | **核心流程完整**，认证未生效、未上线 |
+| [热点内容创作流水线](/projects/wechat-news-pipeline) | 搜热点 → 改写 → 校验 → 导出 | Flask / DeepSeek / trafilatura | **可打包分发**，抓取方案脆弱 |
+| [波段执行器](/projects/swing-executor) | 人工观点 + 算法执行 | Python / NumPy / 腾讯日线 | **首版回测完成**（样本内），未接实盘 |
+| [核心-卫星量化框架](/projects/aquant) | 底仓+波段，框架化重构 | Python / NumPy / AkShare / QMT | **框架就绪**，未接实盘成交 |
 | [项目知识库与本站](/projects/wiki) | Obsidian → 静态站发布管线 | VitePress / Node | **进行中** |
 
 ::: warning 关于"真实状态"

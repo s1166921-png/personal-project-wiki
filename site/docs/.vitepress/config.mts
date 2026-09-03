@@ -63,7 +63,17 @@ export default defineConfig({
             { text: 'RPA 自动化工具链', link: '/projects/rpa' },
             { text: 'AI 智能客服', link: '/projects/ai-cs' },
             { text: '财税合规官网', link: '/projects/compliance-site' },
+            { text: '物流审计系统', link: '/projects/logistics-audit' },
+            { text: '热点内容创作流水线', link: '/projects/wechat-news-pipeline' },
             { text: '项目知识库与本站', link: '/projects/wiki' }
+          ]
+        },
+        {
+          text: '量化投资',
+          collapsed: false,
+          items: [
+            { text: '波段执行器', link: '/projects/swing-executor' },
+            { text: '核心-卫星量化框架', link: '/projects/aquant' }
           ]
         },
         {
