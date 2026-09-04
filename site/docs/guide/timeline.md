@@ -17,9 +17,9 @@
 
 | 时间 | 事件 | 证据 |
 | --- | --- | --- |
-| ✅ 06-16 ~ 06-22 | 物流对账 RPA 处理华桥 5 月、邦递 6 月账单 | `RPA project/data/` 下的账单文件与 `_对账完成.xlsx` 产出 |
+| ✅ 06-16 ~ 06-22 | 物流对账 RPA 处理某物流商 A/B 账单 | `RPA project/data/` 下的账单文件与 `_对账完成.xlsx` 产出 |
 | ✅ 06-22 | **SOP 视频系统完成**：客户账号体系、定价流程、优化 | git 提交 `feat: complete SOP video system with customer accounts, pricing flow, and optimizations` |
-| ✅ 06-29 | 运单标识 RPA 交付 | `nextsls-wecom-rpa-20260629` |
+| ✅ 06-29 | 运单标识 RPA 交付 | 运单标识 RPA 交付归档记录 |
 
 ## 2026 年 7 月
 

@@ -34,7 +34,7 @@
 | --- | --- |
 | 从企业微信取文件 | **AutoHotkey**（`wecom-download.ahk`） |
 | 解析运单号 | Node 读 Excel |
-| 仓储系统操作 | **Playwright**（`moyckj.nextsls.com`） |
+| 仓储系统操作 | **Playwright**（仓储系统后台，域名已脱敏） |
 
 ::: tip 为什么用 AHK 而不是 API
 企业微信桌面端**没有稳定公开的群文件下载 API**。代码注释明确写了这一点。
@@ -69,7 +69,7 @@ AHK 脚本靠**屏幕坐标点击**（`Click, 520, 520`），README 也写明"�
 
 ### 业务痛点
 
-华桥、邦递等物流商的月结账单，要和 TMS 系统里的供应商流水**逐行核对金额与费用类型**。人工对账枯燥且容易漏。
+多家物流商的月结账单，要和 TMS 系统里的供应商流水**逐行核对金额与费用类型**。人工对账枯燥且容易漏。
 
 ### 实现
 
@@ -90,7 +90,7 @@ AHK 脚本靠**屏幕坐标点击**（`Click, 520, 520`），README 也写明"�
 | ⚠️ | 费用类型不匹配 |
 | ⚠️ | TMS 无此运单 |
 
-`data/` 目录下留有华桥 5 月、邦递 6 月账单及 `_对账完成.xlsx` 产出，**证明这套流程真实跑过**。
+`data/` 目录下留有某物流商 A（5 月）、某物流商 B（6 月）账单及 `_对账完成.xlsx` 产出，**证明这套流程真实跑过**。
 
 ### 安全姿态
 
@@ -111,12 +111,75 @@ AHK 脚本靠**屏幕坐标点击**（`Click, 520, 520`），README 也写明"�
 | 工具 A 安全 | **默认 dry-run**，跳过"执行"点击，逐单截图存证 | `config.json` `behavior.dryRun` |
 | 工具 B 对账结果 | **四分类**（一致 / 金额不符 / 费用类型不匹配 / TMS 无此运单） | `reconcile_engine.py` |
 | 工具 B 安全姿态 | 对 TMS **只读**，写操作只在本地生成 Excel | 设计 |
-| 真实账单 | 华桥 5 月、邦递 6 月账单 + `_对账完成.xlsx` 产出 | `data/` 目录 |
+| 真实账单 | 某物流商 A（5 月）、某物流商 B（6 月）账单 + `_对账完成.xlsx` 产出 | `data/` 目录 |
 | 凭证管理 | 走环境变量 `WAREHOUSE_USERNAME/PASSWORD`，不写死 | 代码 |
 
 ::: tip 这个项目的成果是"安全边界"，不是"自动化范围"
 工具要**动真实仓储系统的写操作**，所以最有价值的设计是 dry-run 默认开启 + 截图留证 + 对账只读。它证明的不是"我能自动化多少步"，而是"我知道哪一步不能自动"——面试时把这个安全意识讲出来，比强调自动化覆盖率更打动人。
 :::
+
+## 可验证证据
+
+> 完整代码在公司内网，本页只放脱敏后的证据；面试可提供脱敏代码演示。
+
+**工具 A：运单标识（脱敏）**
+
+```text
+企微群文件（AutoHotkey 取文件）
+   ↓
+Node 解析运单号
+   ↓
+Playwright 操作仓储后台（逐单搜索勾选）
+   ↓
+默认 dry-run：走完整流程，跳过最后一次「执行」点击
+```
+
+**工具 B：物流对账（脱敏）**
+
+```text
+企微回调/上传 → FastAPI → reconcile_engine → 四分类差异报告（对 TMS 只读）
+```
+
+**核心代码片段（脱敏）**
+
+工具 A 的 dry-run 分支——**整个项目最值得讲的安全设计**：
+
+```javascript
+// src/index.js:234 —— executeMark(page, dryRun)
+const executeButton = await firstOf(
+  () => page.getByRole("button", { name: /^执行$/ }),
+  () => page.locator(".ant-modal button").filter({ hasText: "执行" })
+);
+if (!executeButton) throw new Error("没有找到标识弹窗的执行按钮");
+
+if (dryRun) {
+  console.log("[dry-run] 已打开标识弹窗，跳过“执行”点击");
+  // 随后按 Escape 关闭弹窗（index.js:303-304）
+}
+```
+
+```javascript
+// src/index.js:20 —— 默认不写，需显式加 --no-dry-run 才放行
+if (args.has("--dry-run"))    config.behavior.dryRun = true;
+if (args.has("--no-dry-run")) config.behavior.dryRun = false;
+```
+
+::: tip 为什么这段值得放
+脚本要**动真实仓储系统的写操作**，所以默认是"演练"而不是"执行"：走完整流程、打开弹窗、截图存证，但**跳过最后一次「执行」点击**，再按 Escape 关掉。必须人工确认演练截图无误，才能显式加 `--no-dry-run`。
+
+它证明的不是"我能自动化多少步"，而是"**我知道哪一步不能自动**"。
+:::
+
+**运行证据**
+
+| 验证项 | 结果 |
+| --- | --- |
+| 工具 A 演练流程 | dry-run 逐单截图存证（`artifacts/screenshots/`） |
+| 工具 B 对账产出 | 四分类差异报告 + `_对账完成.xlsx` |
+| 真实账单样本 | 某物流商 A（5 月）、某物流商 B（6 月） |
+| 凭证管理 | 走环境变量 `WAREHOUSE_USERNAME` / `WAREHOUSE_PASSWORD`，不写死在代码 |
+
+> 以上为脱敏后的运行口径，完整代码在内网，面试可提供脱敏演示。
 
 ## 四、真实边界
 

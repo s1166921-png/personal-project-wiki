@@ -208,6 +208,71 @@ README 和开发者文档里写的是「8 种语言」，还列了一个代码�
 **这是文档没跟上代码的典型情况。** 如果要拿这个项目面试，先把文档改对——面试官 if 打开 README 对比代码，这种不一致很伤。
 :::
 
+## 可验证证据
+
+> 完整代码在公司内网，本页只放脱敏后的证据；面试可提供脱敏代码演示。
+
+**架构（脱敏）**
+
+```text
+[亚马逊财报 PDF（12 站点 × 11 语言）]
+        ↓
+pdf_parser.py      坐标重建 · 语言检测 · 金额归一
+        ↓
+value_mapper.py    科目名 → Excel 单元格（V16/V17 符号开关）
+        ↓
+validator.py       5 条校验规则
+        ↓
+excel_writer.py    openpyxl 写入，保留模板公式
+        ↓
+[GUI 颜色分级复核]  →  [亿企代账凭证导入（SHA-256 防重）]
+```
+
+**核心代码片段（脱敏）**
+
+`pdf_parser.py` 里最值得讲的一段——**7px 固定窗口行分组 + 日文孤儿金额再分配**：
+
+```python
+# 行分组：固定 7px 高度窗口
+# 注释原文：This avoids the drift-bug where max(cur_y, y) accumulated small
+# y advances across alternating left/right items until adjacent rows
+# (9-10 px apart) bled into one.
+for x, y, text in all_spans:
+    new_min = min(cur_min_y, y)
+    new_max = max(cur_max_y, y)
+    # 超出 7px 则另起一行（日文 PDF 的金额会下漂 11-12px）
+```
+
+```python
+# 孤儿金额再分配：把落在窗口外的孤立金额归并回上一行同名科目
+# 注释原文：redistribute orphan amounts (rows with only amounts/skip-text)
+# to the same-side column of the previous row. This handles Japanese PDFs
+# where amounts drift 11-12px below their names.
+for r_idx in range(len(rows) - 1, 0, -1):
+    cur, prev = rows[r_idx], rows[r_idx - 1]
+    # 只有「纯金额列」才算孤儿（含非金额文本则跳过）
+    has_any_text = any(not _is_amount(t) for _, t in col_items)
+    if has_any_text:
+        continue
+    # 上一行同侧必须有「悬空」的科目名（有名字但还没分到金额）
+```
+
+::: tip 为什么这段值得放
+它体现了「先建通用规则，再为真实数据打补丁」的工程路径。7px 窗口是通用规则，孤儿再分配是针对日文版式的特例处理——**两者都保留了，没有用一个 hack 覆盖掉通用逻辑**。
+:::
+
+**运行证据**
+
+| 验证项 | 结果 |
+| --- | --- |
+| 12 国真实 PDF 解析测试 | 通过（`test_all_countries.py`） |
+| 支持语言 | 11 种（`i18n.py` `LOCALES`，非文档所写的 8 种） |
+| 支持币种 | 20 种（`config.py` `KNOWN_CURRENCIES`） |
+
+::: warning 一个必须知道的点
+README 和开发者文档写的是「8 种语言」，还列了代码里**根本不存在**的 `cs`（捷克语）。实际支持 11 种。面试前把文档改对——面试官打开 README 对比 `i18n.py` 就会发现问题。
+:::
+
 ## 八、已知边界与后续
 
 | 边界 | 说明 |
@@ -234,7 +299,7 @@ README 和开发者文档里写的是「8 种语言」，还列了一个代码�
 
 **先对齐文档和代码**——这是面试前最该做的。面试官一旦打开 README 对比 `i18n.py` 的 `LOCALES`，语言数量对不上就会扣分；而真实能力（11 种语言、20 种币种、连续 12 国测试通过）反而不需要夸大。
 
-## 九、三十秒版本
+## 十、三十秒版本
 
 > 亚马逊的财报 PDF 是没有文本层的版式文件，财务要手工把几百行科目和金额录进 Excel。我用 PyMuPDF 按坐标重建表格结构，做了 11 种语言的科目字典加模糊匹配、五种数字格式的归一化，再把科目映射对齐到中国会计科目，输出保留公式的 Excel。
 >
