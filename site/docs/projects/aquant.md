@@ -109,7 +109,42 @@ walk-forward / DSR 校验由 `research/run_baseline.py` 端到端跑，**没有�
 | 中期 | 接 QMT 模拟盘 | 用 qmt_export_bars + QmtFileProvider 打通模拟柜台下单 | 待启动 |
 | 远期 | 参数高原分析 | 验证默认参数的稳健性，而非单点最优 | 设想 |
 
-## 九、三十秒版本
+## 九、用 Agent 协作开发的工作方式
+
+aquant 是**和 AI Agent 协作重建的项目**，不是一个人闷头写。具体痕迹：
+
+| 环节 | Agent 做了什么 |
+| --- | --- |
+| 旧项目复盘 | 把 finance trader 的 6 个 P0 翻译成 aquant 的硬约束（见 `finance trader/.workbuddy/memory/2026-09-03.md`，包含每个 P0 的文件:行号证据） |
+| 架构契约 | 起草 `strategies/base.py` 的注释 + `engine.py` 的 `assert hist.index.max() <= signal_date`——把"不要看未来"从口头约定升级成物理崩溃 |
+| 策略规则 | `core_satellite.py` 注释里写出三类失效场景（单边下跌 -11%、单边上涨 -26%、震荡市是甜区），并把每条规则的文献依据（华泰研报、Cowles 1933）写进代码 |
+| 测试设计 | 把旧项目的两个 P0 bug 直接转成 `test_metrics.py` 的断言（Sharpe 不随笔数变、回撤峰值追踪、DSR 随尝试次数下降） |
+| 数据桥接 | 把 QMT 双进程架构封装成 `qmt-realtime-pipeline` skill，**禁止策略进程直接 import xtquant** |
+| 参数调整 | 明确拒绝在样本内调参；任何改动必须先走 purged walk-forward + Deflated Sharpe |
+
+::: tip 这个项目里和 Agent 协作的硬规矩
+1. 策略实现里**不能直接调下单、改仓位、算手续费**——违反 `StrategyCore.generate_signals()` 契约就是越权，回测与实盘行为必然分裂。
+2. 参数必须取文献默认值，**Agent 不允许擅改**——要改就先补样本外验证，再写报告。
+3. 报告必须先写"失效场景"和"不适配的标的"，再写收益——这点比 swing-executor 还严格，因为 aquant 是框架，任何含糊都会被放大。
+:::
+
+## 十、关于"跑了四个策略"的诚实记录
+
+在项目早期讨论中，曾说过"四个策略、每个工作日启动"。把这句话映射到代码后：
+
+| # | 位置 | 类型 | 状态 |
+| --- | --- | --- | --- |
+| 1 | `swing-executor/core/strategy.py` | 波段执行器（人工观点+算法执行） | 当前活跃，自选三标的 181 笔回测即此策略 |
+| 2 | `aquant/strategies/core_satellite.py` | 核心-卫星策略（底仓70%+波段30%） | 框架就绪，未跑自选标的 |
+| 3 | `finance trader/strategy/backtest/strategies/all_strategies.py` | 10 个旧策略（MACD/RSI/Bollinger/双EMA/KDJ/量价共振/ATR通道/VWAP/多指标投票/V4日内区间） | **已废弃**——6 个 P0 + Agent 三分法（移植/冻结/丢弃）判定为"冻结归档"，不进新项目 |
+| 4 | — | 第 4 个策略 | **不存在** |
+
+面试被问到"你说四个只看到两个"的正确答案是：
+1. 活跃的是 swing-executor（波段）和 aquant（核心-卫星），分别走不同思路；
+2. finance trader 的 10 个旧策略因为架构级 P0 被整体放弃，不进新项目；
+3. 第 4 个**当前不存在**——不靠凑数应付。
+
+## 十一、三十秒版本
 
 > 一个核心-卫星量化框架，是上一版波段执行器的经验框架化。上一版最大的坑是 backtest 里写了三套回测逻辑、live 又写第四套，零共享。所以这一版的铁律是：策略只产信号，引擎、成本、数据、校验都只有一份。
 >
