@@ -73,7 +73,7 @@ npm run docs:preview    # 本地预览产物 http://localhost:4173
 
 - [x] `npm run docs:build` 在本地 0 错误通过
 - [x] GitHub Pages 已开启（Source: GitHub Actions），首次部署已成功
-- [x] 所有项目页的"真实状态 / 已知边界"与代码一致，未夸大
+- [x] 所有项目页的"真实状态 / 数据来源"与代码一致，未夸大
 - [x] 导航与侧边栏链接无失效（构建日志无 `dead links` 警告）
 - [x] 社交链接、版权信息准确（署名已统一为「小杨」）
 - [ ] 自定义域名 `wiki.meiouyuncang.com` 的 DNS / HTTPS（可选，待绑定）

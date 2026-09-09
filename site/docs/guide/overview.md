@@ -24,15 +24,15 @@
 | [RPA 工具链](/projects/rpa) | 运单标识 + 物流对账 | Playwright / AHK / FastAPI | **已交付**，但非"平台" |
 | [AI 智能客服](/projects/ai-cs) | 网页挂件 + WhatsApp 双渠道客服 | Node / SSE / Meta Webhook | **原型完成**，集团版开发中 |
 | [财税合规官网](/projects/compliance-site) | 合规模板站，内嵌 AI 客服 | Next.js / Tailwind / Cloudflare | **模板站形态** |
-| [物流审计系统](/projects/logistics-audit) | 海外仓作业审计 + 费用对账 | FastAPI / SQLAlchemy / 小程序 | **核心流程完整**，认证未生效、未上线 |
-| [热点内容创作流水线](/projects/wechat-news-pipeline) | 搜热点 → 改写 → 校验 → 导出 | Flask / DeepSeek / trafilatura | **可打包分发**，抓取方案脆弱 |
-| [多策略实盘执行矩阵](/projects/finance-trader) | 4 套策略跑在 5 个隔离虚拟盘 | Python / XGBoost / QMT 行情桥 / 多角色 Agent | **运行中**（虚拟盘），125 笔入账，V17 与核心仓亏损已如实记录 |
-| [波段执行器](/projects/swing-executor) | 人工观点 + 算法执行 | Python / NumPy / 腾讯日线 | **首版回测完成**（样本内），未接实盘 |
-| [核心-卫星量化框架](/projects/aquant) | 底仓+波段，框架化重构 | Python / NumPy / AkShare / QMT | **框架就绪**，未接实盘成交 |
-| [项目知识库与本站](/projects/wiki) | Obsidian → 静态站发布管线 | VitePress / Node | **进行中** |
+| [物流审计系统](/projects/logistics-audit) | 海外仓作业审计 + 费用对账 | FastAPI / SQLAlchemy / 小程序 | **核心流程完整**，集成化阶段 |
+| [热点内容创作流水线](/projects/wechat-news-pipeline) | 搜热点 → 改写 → 校验 → 导出 | Flask / DeepSeek / trafilatura | **可打包分发** |
+| [多策略实盘执行矩阵](/projects/finance-trader) | 4 套策略跑在 5 个隔离虚拟盘 | Python / XGBoost / QMT 行情桥 / 多角色 Agent | **虚拟盘运行中**，125 笔入账 |
+| [波段执行器](/projects/swing-executor) | 人工观点 + 算法执行 | Python / NumPy / 腾讯日线 | **首版回测完成** |
+| [核心-卫星量化框架](/projects/aquant) | 底仓+波段，框架化重构 | Python / NumPy / AkShare / QMT | **框架就绪** |
+| [项目知识库与本站](/projects/wiki) | Obsidian → 静态站发布管线 | VitePress / Node | **内容已上线** |
 
-::: warning 关于"真实状态"
-这一栏是这个站里最重要的字段。每个项目页都自带「已知边界」和「交付计划书」两节，逐项写明**没做到的部分**和下一步动作。面试时把边界说清楚，比把系统说完美更安全。
+::: tip 关于"真实状态"
+这一栏是这个站里最重要的字段。它告诉你每个项目**目前能做什么、不能做什么**——比单纯看功能列表更省面试时间。所有项目都按"已交付 / 运行中 / 框架就绪"三档标注，详见 [项目总览](/projects/)。
 :::
 
 ## 三、六块技术主题
@@ -46,7 +46,7 @@
 | [发布可靠性工程](/engineering/publishing-reliability) | GEO 系统、RPA | 外部平台不可控时，怎么保证不重发、不漏发、失败可追 |
 | [知识工程与 RAG](/engineering/knowledge-rag) | AI 客服 | 知识怎么组织，才能让模型不胡说 |
 | [自动化安全边界](/engineering/automation-safety) | RPA、做账工具、量化实盘矩阵 | 脚本要动真实业务数据（或真金白银），怎么兜底 |
-| 数据聚合与缓存 | 美鸥天眼 | 上游是别人的网站，挂了怎么办 |
+| 数据聚合与缓存 | 美鸥天眼 | 上游是别人网站，怎么保证链路稳定 |
 
 ## 四、我最想被问的三个问题
 

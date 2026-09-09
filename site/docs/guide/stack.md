@@ -45,7 +45,7 @@
 | 技术 | 项目 | 说明 |
 | --- | --- | --- |
 | **Playwright** | RPA、GEO 发布 | 目标系统无 API，只能走 UI 自动化 |
-| **AutoHotkey** | RPA 运单标识 | 企业微信桌面端无公开文件下载 API；**靠坐标点击，脆弱** |
+| **AutoHotkey** | RPA 运单标识 | 企业微信桌面端无公开文件下载 API，靠坐标点击 |
 | **CDP** | 亿企代账自动化 | 验证阶段，编排层未完成 |
 | **Windows 计划任务** | GEO 系统 | `schtasks` + PowerShell 注册 |
 

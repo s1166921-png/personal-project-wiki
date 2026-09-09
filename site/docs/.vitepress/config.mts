@@ -31,7 +31,6 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '交付项目', link: '/projects/', activeMatch: '/projects/' },
       { text: '技术专题', link: '/engineering/', activeMatch: '/engineering/' },
-      { text: '面试指南', link: '/interview/', activeMatch: '/interview/' },
       { text: '计划书', link: '/guide/roadmap', activeMatch: '/guide/roadmap' },
       { text: '部署', link: '/deploy', activeMatch: '/deploy' },
       { text: '关于', link: '/about' }
@@ -87,15 +86,6 @@ export default defineConfig({
             { text: '发布可靠性工程', link: '/engineering/publishing-reliability' },
             { text: '知识工程与 RAG', link: '/engineering/knowledge-rag' },
             { text: '自动化安全边界', link: '/engineering/automation-safety' }
-          ]
-        },
-        {
-          text: '面试指南',
-          collapsed: false,
-          items: [
-            { text: '怎么用好这个站', link: '/interview/' },
-            { text: '三分钟自我介绍', link: '/interview/pitch' },
-            { text: '用 STAR 讲项目', link: '/interview/star' }
           ]
         }
       ]
