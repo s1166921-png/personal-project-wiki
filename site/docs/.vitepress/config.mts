@@ -95,8 +95,7 @@ export default defineConfig({
           items: [
             { text: '怎么用好这个站', link: '/interview/' },
             { text: '三分钟自我介绍', link: '/interview/pitch' },
-            { text: '用 STAR 讲项目', link: '/interview/star' },
-            { text: '高频追问与应答', link: '/interview/qa' }
+            { text: '用 STAR 讲项目', link: '/interview/star' }
           ]
         }
       ]

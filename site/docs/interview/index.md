@@ -10,7 +10,7 @@
 
 1. [项目总览](/projects/) —— 看十四个交付物和它们的真实状态
 2. [GEO 内容生产系统](/projects/geo-article) —— 最完整的一个项目
-3. [高频追问与应答](/interview/qa) —— 看这个人面对追问怎么接
+3. [用 STAR 讲项目](/interview/star) —— 重点项目怎么讲、追问往哪接
 
 ## 如果你要深入追问
 
@@ -21,7 +21,7 @@
 | 处理脏数据的能力 | [PDF 逆向解析](/engineering/pdf-parsing) |
 | 风险意识与安全设计 | [自动化安全边界](/engineering/automation-safety) |
 | AI 应用落地能力 | [内容质量门禁](/engineering/content-quality-gate) |
-| 直面问题的态度 | [高频追问与应答](/interview/qa) |
+| 项目讲解与取舍 | [用 STAR 讲项目](/interview/star) |
 
 ## 这个站的三条写作规矩
 

@@ -91,7 +91,7 @@
 ---
 
 ::: tip 如果你在看这个站
-建议从 [三分钟自我介绍](/interview/pitch) 或者 [高频追问与应答](/interview/qa) 开始。
+建议从 [三分钟自我介绍](/interview/pitch) 或者 [用 STAR 讲项目](/interview/star) 开始。
 
 如果你想看技术深度，[技术专题](/engineering/) 那五篇是我最想被问的部分。
 :::
