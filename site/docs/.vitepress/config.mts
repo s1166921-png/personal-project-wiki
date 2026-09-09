@@ -72,6 +72,7 @@ export default defineConfig({
           text: '量化投资',
           collapsed: false,
           items: [
+            { text: '多策略实盘执行矩阵', link: '/projects/finance-trader' },
             { text: '波段执行器', link: '/projects/swing-executor' },
             { text: '核心-卫星量化框架', link: '/projects/aquant' }
           ]

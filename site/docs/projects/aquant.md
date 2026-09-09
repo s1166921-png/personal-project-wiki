@@ -128,21 +128,30 @@ aquant 是**和 AI Agent 协作重建的项目**，不是一个人闷头写。�
 3. 报告必须先写"失效场景"和"不适配的标的"，再写收益——这点比 swing-executor 还严格，因为 aquant 是框架，任何含糊都会被放大。
 :::
 
-## 十、关于"跑了四个策略"的诚实记录
+## 十、"四个策略"到底在哪——完整清单
 
-在项目早期讨论中，曾说过"四个策略、每个工作日启动"。把这句话映射到代码后：
+这一节曾误判为"只有 2 个、第 4 个不存在"。**那个结论是错的**：只搜了新项目目录，漏掉了仍在运行的纸面盘主目录 `finance trader/strategy/live_paper_trader/`。更正后：
 
-| # | 位置 | 类型 | 状态 |
+**4 套策略逻辑，跑在 5 个相互隔离的账户上**（均在 `finance trader/strategy/live_paper_trader/`）：
+
+| 策略 | 核心做法 | 主文件 | 状态 |
 | --- | --- | --- | --- |
-| 1 | `swing-executor/core/strategy.py` | 波段执行器（人工观点+算法执行） | 当前活跃，自选三标的 181 笔回测即此策略 |
-| 2 | `aquant/strategies/core_satellite.py` | 核心-卫星策略（底仓70%+波段30%） | 框架就绪，未跑自选标的 |
-| 3 | `finance trader/strategy/backtest/strategies/all_strategies.py` | 10 个旧策略（MACD/RSI/Bollinger/双EMA/KDJ/量价共振/ATR通道/VWAP/多指标投票/V4日内区间） | **已废弃**——6 个 P0 + Agent 三分法（移植/冻结/丢弃）判定为"冻结归档"，不进新项目 |
-| 4 | — | 第 4 个策略 | **不存在** |
+| V4/V14 ETF Scalper | 规则驱动 ETF 短线，多品类打分排名 | `scalping/v4_scalper.py` | 104 笔已平仓 |
+| V17 XGBoost 多因子 | 每 ETF 独立 XGBoost，21 维特征 | `scalping/v17_ml_trader.py` | 21 笔已平仓 |
+| TradingAgents B/C/C 核心仓 | 多角色研究 → 辩论 → 风控裁决 | `tradingagents_decision.py` | 20 万，−5.96% |
+| TradingAgents T+0 卫星仓 | T+0 短线，独立风险额度 | `tradingagents_t0_overlay.py` | 4 万，−0.52% |
+| 独立 20 万 T+0 比赛账户 | 同上逻辑，资金完全隔离做对照 | 同上 | 20 万，+0.16% |
 
-面试被问到"你说四个只看到两个"的正确答案是：
-1. 活跃的是 swing-executor（波段）和 aquant（核心-卫星），分别走不同思路；
-2. finance trader 的 10 个旧策略因为架构级 P0 被整体放弃，不进新项目；
-3. 第 4 个**当前不存在**——不靠凑数应付。
+逐笔归因见本站 [FinanceTrader 实盘执行矩阵](./finance-trader.md)。
+
+aquant 与 swing-executor 是**新建的干净实现**，与上面那套纸面盘并行：
+- `aquant/strategies/core_satellite.py` — 本页主角，框架就绪
+- `swing-executor/core/strategy.py` — 波段执行器，181 笔回测
+- `finance trader/.../live_paper_trader/` — 仍在跑的纸面盘矩阵，有 6 个架构级 P0，但**真实成交数据在这里**
+
+::: tip 误判教训
+第一次核对时只扫了新项目，得出"第 4 个不存在"。**这是搜索范围不全，不是用户记错。** 找策略类资产要连旧项目一起扫——旧项目问题再多，它的真实成交记录也是最硬的证据。
+:::
 
 ## 十一、三十秒版本
 

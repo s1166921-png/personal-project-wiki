@@ -94,6 +94,14 @@ News 站（唯一权威源）+ 品牌官网 + 两套可复用模板。
 
 ## 量化投资
 
+### [多策略实盘执行矩阵 FinanceTrader](/projects/finance-trader)
+
+4 套策略逻辑跑在 5 个隔离的虚拟盘账户，125 笔逐笔入账，每个交易日自动复盘。
+
+- **技术栈**：Python / XGBoost / 迅投 QMT 行情桥 / 多角色 Agent 决策链
+- **状态**：🟢 运行中（虚拟盘）｜ ⚠️ V17 与 TradingAgents 当前亏损，已如实记录
+- **一句话卖点**：行情超 10 秒 fail-closed、LLM 不碰下单闸门、每笔可归因、脚本自动汇总
+
 ### [波段执行器 SwingExecutor](/projects/swing-executor)
 
 人工观点 + 算法执行：低位分批买、高位分批卖、错了止损。6 条工程铁律对抗旧项目 P0 坑。
