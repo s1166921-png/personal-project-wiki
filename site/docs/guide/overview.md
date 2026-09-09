@@ -1,6 +1,6 @@
 # 项目全景
 
-我交付的系统集中在跨境电商的几个高人工环节，外加一套量化投资研究。按业务主线分，是五条；按技术主题分，是六块。
+我交付的系统集中在跨境电商的几个高人工环节，外加一条量化投资主线（从研究、框架到多策略实盘执行）。按业务主线分，是五条；按技术主题分，是六块。
 
 ## 一、五条业务主线
 
@@ -10,9 +10,9 @@
 | **通关数据** | [美鸥天眼 · 关税查询](/projects/hscode) | 报关员跨五国官网查税率 |
 | **内容获客** | [GEO 内容生产系统](/projects/geo-article)、[GEO 网页矩阵](/projects/geo-web)、[财税合规官网](/projects/compliance-site) | 运营手写文章、手动分发 |
 | **作业与服务** | [跨境 SOP 视频平台](/projects/sop-video)、[RPA 工具链](/projects/rpa)、[AI 智能客服](/projects/ai-cs)、[物流审计系统](/projects/logistics-audit) | 海外工人培训、运单标识、对账、重复答疑、海外仓作业审计 |
-| **量化投资** | [波段执行器](/projects/swing-executor)、[核心-卫星量化框架](/projects/aquant) | 人工盯盘、手动下单、回测靠拍脑袋 |
+| **量化投资** | [多策略实盘执行矩阵](/projects/finance-trader)、[波段执行器](/projects/swing-executor)、[核心-卫星量化框架](/projects/aquant) | 人工盯盘、手动下单、回测靠拍脑袋 |
 
-## 二、十三个交付物一览
+## 二、十四个交付物一览
 
 | 项目 | 定位 | 技术栈 | 真实状态 |
 | --- | --- | --- | --- |
@@ -26,6 +26,7 @@
 | [财税合规官网](/projects/compliance-site) | 合规模板站，内嵌 AI 客服 | Next.js / Tailwind / Cloudflare | **模板站形态** |
 | [物流审计系统](/projects/logistics-audit) | 海外仓作业审计 + 费用对账 | FastAPI / SQLAlchemy / 小程序 | **核心流程完整**，认证未生效、未上线 |
 | [热点内容创作流水线](/projects/wechat-news-pipeline) | 搜热点 → 改写 → 校验 → 导出 | Flask / DeepSeek / trafilatura | **可打包分发**，抓取方案脆弱 |
+| [多策略实盘执行矩阵](/projects/finance-trader) | 4 套策略跑在 5 个隔离虚拟盘 | Python / XGBoost / QMT 行情桥 / 多角色 Agent | **运行中**（虚拟盘），125 笔入账，V17 与核心仓亏损已如实记录 |
 | [波段执行器](/projects/swing-executor) | 人工观点 + 算法执行 | Python / NumPy / 腾讯日线 | **首版回测完成**（样本内），未接实盘 |
 | [核心-卫星量化框架](/projects/aquant) | 底仓+波段，框架化重构 | Python / NumPy / AkShare / QMT | **框架就绪**，未接实盘成交 |
 | [项目知识库与本站](/projects/wiki) | Obsidian → 静态站发布管线 | VitePress / Node | **进行中** |
@@ -44,7 +45,7 @@
 | [内容质量门禁](/engineering/content-quality-gate) | GEO 系统 | AI 生成的内容怎么自动判定能不能发 |
 | [发布可靠性工程](/engineering/publishing-reliability) | GEO 系统、RPA | 外部平台不可控时，怎么保证不重发、不漏发、失败可追 |
 | [知识工程与 RAG](/engineering/knowledge-rag) | AI 客服 | 知识怎么组织，才能让模型不胡说 |
-| [自动化安全边界](/engineering/automation-safety) | RPA、做账工具 | 脚本要动真实业务数据，怎么兜底 |
+| [自动化安全边界](/engineering/automation-safety) | RPA、做账工具、量化实盘矩阵 | 脚本要动真实业务数据（或真金白银），怎么兜底 |
 | 数据聚合与缓存 | 美鸥天眼 | 上游是别人的网站，挂了怎么办 |
 
 ## 四、我最想被问的三个问题
